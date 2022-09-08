@@ -1,3 +1,4 @@
+import 'package:employee_form/Button_Style/button_field.dart';
 import 'package:employee_form/Fields_Style/text_field.dart';
 import 'package:employee_form/label/label_text.dart';
 import 'package:flutter/material.dart';
@@ -25,11 +26,12 @@ class _MyAppState extends State<MyApp> {
           title: const Center(child: Text("Employee Form", )),
           backgroundColor: Colors.amber,
         ),
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(8.0),
+        body: Column(
+          mainAxisSize: MainAxisSize.max,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SingleChildScrollView(
                 child: Form(
                   key: _globalKey,
                   child: Column(
@@ -86,10 +88,10 @@ class _MyAppState extends State<MyApp> {
                     ],
                   ),
                 ),
-
               ),
-            ],
-          ),
+            ),
+            ReusableButton()
+          ],
         ),
 
       ),
