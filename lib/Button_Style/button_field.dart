@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ReusableButton extends StatelessWidget {
-  const ReusableButton({Key? key}) : super(key: key);
+  final Function()? onPressed;
+   ReusableButton({Key? key, required this.onPressed,}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,10 +11,12 @@ class ReusableButton extends StatelessWidget {
       height: 50,
       width: double.maxFinite,
       margin: EdgeInsets.only(left: 10, right: 10),
-      child: GestureDetector(
-        onTap: (){
-          print("Button Tapped");
-        },
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        borderRadius: BorderRadius.circular(20)
+      ),
+      child: ElevatedButton(
+        onPressed: onPressed,
         child: const Center(
           child: Text(
             "SUBMIT",
@@ -22,10 +25,6 @@ class ReusableButton extends StatelessWidget {
             ),
           ),
         ),
-      ),
-      decoration: BoxDecoration(
-        color: Colors.amber,
-        borderRadius: BorderRadius.circular(20)
       ),
     );
   }
