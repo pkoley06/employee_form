@@ -7,25 +7,25 @@ class ReusableButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 50,
+      width: double.maxFinite,
+      margin: EdgeInsets.only(left: 10, right: 10),
       child: GestureDetector(
         onTap: (){
           print("Button Tapped");
         },
-        child: Container(
-          height: 50,
-          width: double.maxFinite,
-          margin: const EdgeInsets.only(left: 20, right: 20),
-          decoration: BoxDecoration(
-            color: Colors.orange,
-            borderRadius: BorderRadius.circular(40)
-
-          ),
-          child: const Center(
-            child: Text(
-              "Submit"
+        child: const Center(
+          child: Text(
+            "SUBMIT",
+            style: TextStyle(
+              fontSize: 20
             ),
           ),
         ),
+      ),
+      decoration: BoxDecoration(
+        color: Colors.amber,
+        borderRadius: BorderRadius.circular(20)
       ),
     );
   }
