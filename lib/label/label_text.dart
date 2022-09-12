@@ -7,4 +7,6 @@ class Label{
   static const String zipcodeLabel = "Zipcode";
   static const String genderLabel = "Gender";
   static const String emailLabel = "Email";
+  static const String numberLabel = "Moblie Number";
+  static const String empIdLabel = "Employee ID";
 }

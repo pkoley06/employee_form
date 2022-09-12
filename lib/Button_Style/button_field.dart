@@ -16,6 +16,10 @@ class ReusableButton extends StatelessWidget {
         borderRadius: BorderRadius.circular(20)
       ),
       child: ElevatedButton(
+
+        style: ButtonStyle(
+
+        ),
         onPressed: onPressed,
         child: const Center(
           child: Text(

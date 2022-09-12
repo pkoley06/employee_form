@@ -3,6 +3,7 @@ import 'package:employee_form/Fields_Style/dropdown.dart';
 import 'package:employee_form/Fields_Style/text_field.dart';
 import 'package:employee_form/label/label_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 
 void main() {
@@ -49,7 +50,7 @@ class _MyAppState extends State<MyApp> {
                       RequiredValidator(errorText: "Required"),
                       LengthRangeValidator(min: 2, max: 15, errorText: "Invalid First Name"),
                     ]),
-                    maxLength: 10,
+                    // maxLength: 10,
                     label: Label.firstNameLabel,
                     textCapitalization: TextCapitalization.characters,
                     isObscureText: false,
@@ -60,12 +61,16 @@ class _MyAppState extends State<MyApp> {
                       RequiredValidator(errorText: "Required"),
                       LengthRangeValidator(min: 2, max: 15, errorText: "Invalid Last Name"),
                     ]),
-                    maxLength: 10,
+                    // maxLength: 10,
                     label: Label.lastNameLabel,
                     textCapitalization: TextCapitalization.characters,
                     isObscureText: false,
                     hintText: Label.lastNameLabel,
                   ),
+                  ReusableDropdown(
+                    validator: MinLengthValidator(1, errorText: "Required"),
+                    items: ["MALE", "FEMALE", "OTHER"],
+                    hint: Label.genderLabel),
                   ReusableTextField(
                     validator: (val){
                       if(val!.isEmpty){
@@ -74,27 +79,50 @@ class _MyAppState extends State<MyApp> {
                       else
                         return null;
                     },
-                    maxLength: 15,
+                    // maxLength: 15,
                     label: Label.countryLabel,
                     textCapitalization: TextCapitalization.characters,
                     isObscureText: false,
                     hintText: Label.countryLabel,
                   ),
-                  ReusableTextField(
-                    validator: (val){
-                      if(val!.isEmpty){
-                        return "Required";
-                      }
-                      else
-                        return null;
-                    },
-                    maxLength: 15,
-                    label: Label.stateLabel,
-                    textCapitalization: TextCapitalization.characters,
-                    isObscureText: false,
-                    hintText: Label.stateLabel,
+                  ReusableDropdown(
+                    validator: MinLengthValidator(1, errorText: "Required"),
+                    hint: Label.stateLabel,
+                    items: ["Andhra Pradesh",
+                      "Arunachal Pradesh",
+                      "Assam",
+                      "Bihar",
+                      "Chhattisgarh",
+                      "Goa",
+                      "Gujarat",
+                      "Haryana",
+                      "Himachal Pradesh",
+                      "Jharkhand",
+                      "Karnataka",
+                      "Kerala",
+                      "Madhya Pradesh",
+                      "Maharashtra",
+                      "Manipur",
+                      "Meghalaya",
+                      "Mizoram",
+                      "Nagaland",
+                      "Odisha",
+                      "Punjab",
+                      "Rajasthan",
+                      "Sikkim",
+                      "Tamil Nadu",
+                      "Telangana",
+                      "Tripura",
+                      "Uttarakhand",
+                      "Uttar Pradesh",
+                      "West Bengal"],
                   ),
                   ReusableTextField(
+                    maxLength: 6,
+                    keyboardType: TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered[],
                     validator: LengthRangeValidator(min: 6, max: 6, errorText: "Invalid"),
                     label: Label.zipcodeLabel,
                     textCapitalization: TextCapitalization.characters,
@@ -114,10 +142,42 @@ class _MyAppState extends State<MyApp> {
                     isObscureText: false,
                     hintText: Label.emailLabel,
                   ),
+                  ReusableTextField(
+                    decoration: InputDecoration(
+                      prefixText: "+91"
+                    ),
+                    maxLength: 10,
+                    keyboardType: TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered[],
+                    validator: LengthRangeValidator(min: 10, max: 10, errorText: "Invalid"),
+                    label: Label.numberLabel,
+                    textCapitalization: TextCapitalization.characters,
+                    isObscureText: false,
+                    hintText: Label.numberLabel,
+                  ),//Mobile Number
+                  ReusableTextField(
+                    decoration: InputDecoration(
+                      prefix: Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 16),
+                        child: Text("ZT-"),
+                      )
+                    ),
+                    maxLength: 4,
+                    keyboardType: TextInputType.numberWithOptions(decimal: false),
+                    inputFormatters: <TextInputFormatter>[
+                      FilteringTextInputFormatter.digitsOnly
+                    ], // Only numbers can be entered[],
+                    validator: LengthRangeValidator(min: 4, max: 4, errorText: "Invalid"),
+                    label: Label.empIdLabel,
+                    textCapitalization: TextCapitalization.characters,
+                    isObscureText: false,
+                    hintText: Label.empIdLabel,
+                  ),//Employee id
                   ReusableButton(
                     onPressed: validate,
-                  ),
-                  // ReusableDropdown(items: ["MALE", "FEMALE", "OTHER"], value: '',)
+                  ),//submit
                 ],
               ),
             ),
