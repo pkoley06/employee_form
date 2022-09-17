@@ -14,17 +14,17 @@ class ReusableTextField extends StatelessWidget {
   final IconData ?iconData;
   final int ?noOfLine;
   final int? maxLength;
-  // final TextEditingController ?controller;
+  final TextEditingController controller;
   // final FocusNode ?currentFocus;
   // final FocusNode ?nextFocus;
   // final bool isLastFocus;
   final TextInputType ?textInputType;
-  final bool isObscureText;
+  bool isObscureText;
   final String ?errorText;
   final String ?suffixIconMsg;
   final Function() ?onTap;
   final TextCapitalization textCapitalization;
-   ReusableTextField({Key? key,required this.validator, this.keyboardType, this.label, this.hintText, this.iconData, this.noOfLine, this.textInputType, required this.isObscureText, this.errorText, this.suffixIconMsg, this.onTap, required this.textCapitalization, this.maxLength, this.inputFormatters, this.decoration, this.prefixText, this.prefix}) : super(key: key);
+   ReusableTextField({Key? key,required this.validator, this.keyboardType, this.label, this.hintText, this.iconData, this.noOfLine, this.textInputType, this.isObscureText=true, this.errorText, this.suffixIconMsg, this.onTap, required this.textCapitalization, this.maxLength, this.inputFormatters, this.decoration, this.prefixText, this.prefix, required this.controller}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,6 +32,8 @@ class ReusableTextField extends StatelessWidget {
       padding: EdgeInsets.only(left: 20, right: 20, top: 20, bottom: 20),
       child: TextFormField(
         inputFormatters: inputFormatters,
+        controller: controller,
+        obscureText: isObscureText?true:false,
 
         keyboardType: keyboardType,
         validator: validator,
